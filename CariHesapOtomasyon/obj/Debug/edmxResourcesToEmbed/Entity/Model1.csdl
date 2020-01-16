@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CariHesapDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CariHesapDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Kategoriler" EntityType="CariHesapDbModel.Kategoriler" />
+    <EntitySet Name="Kullanicilar" EntityType="CariHesapDbModel.Kullanicilar" />
+    <EntitySet Name="Musteriler" EntityType="CariHesapDbModel.Musteriler" />
+    <EntitySet Name="Satislar" EntityType="CariHesapDbModel.Satislar" />
+    <EntitySet Name="Urunler" EntityType="CariHesapDbModel.Urunler" />
+    <AssociationSet Name="FK_Urunler_Kategoriler" Association="CariHesapDbModel.FK_Urunler_Kategoriler">
+      <End Role="Kategoriler" EntitySet="Kategoriler" />
+      <End Role="Urunler" EntitySet="Urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Musteriler_Kullanicilar" Association="CariHesapDbModel.FK_Musteriler_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Musteriler" EntitySet="Musteriler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Satislar_Musteriler" Association="CariHesapDbModel.FK_Satislar_Musteriler">
+      <End Role="Musteriler" EntitySet="Musteriler" />
+      <End Role="Satislar" EntitySet="Satislar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Satislar_Urunler" Association="CariHesapDbModel.FK_Satislar_Urunler">
+      <End Role="Urunler" EntitySet="Urunler" />
+      <End Role="Satislar" EntitySet="Satislar" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Kategoriler">
+    <Key>
+      <PropertyRef Name="kategoriID" />
+    </Key>
+    <Property Name="kategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kategoriAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kategoriDurum" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Urunler" Relationship="CariHesapDbModel.FK_Urunler_Kategoriler" FromRole="Kategoriler" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="kullaniciID" />
+    </Key>
+    <Property Name="kullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullaniciAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullaniciSifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Musteriler" Relationship="CariHesapDbModel.FK_Musteriler_Kullanicilar" FromRole="Kullanicilar" ToRole="Musteriler" />
+  </EntityType>
+  <EntityType Name="Musteriler">
+    <Key>
+      <PropertyRef Name="musteriID" />
+    </Key>
+    <Property Name="musteriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="musteriAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="musteriSoyadi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="musteriTelefon" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="musteriAdres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullaniciID" Type="Int32" Nullable="false" />
+    <Property Name="musteriDurum" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kullanicilar" Relationship="CariHesapDbModel.FK_Musteriler_Kullanicilar" FromRole="Musteriler" ToRole="Kullanicilar" />
+    <NavigationProperty Name="Satislar" Relationship="CariHesapDbModel.FK_Satislar_Musteriler" FromRole="Musteriler" ToRole="Satislar" />
+  </EntityType>
+  <EntityType Name="Satislar">
+    <Key>
+      <PropertyRef Name="satisID" />
+    </Key>
+    <Property Name="satisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urunID" Type="Int32" Nullable="false" />
+    <Property Name="satisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="musteriID" Type="Int32" Nullable="false" />
+    <Property Name="urunAdet" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Musteriler" Relationship="CariHesapDbModel.FK_Satislar_Musteriler" FromRole="Satislar" ToRole="Musteriler" />
+    <NavigationProperty Name="Urunler" Relationship="CariHesapDbModel.FK_Satislar_Urunler" FromRole="Satislar" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="urunID" />
+    </Key>
+    <Property Name="urunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urunAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kategoriID" Type="Int32" Nullable="false" />
+    <Property Name="alimFiyati" Type="Int32" Nullable="false" />
+    <Property Name="satimFiyati" Type="Int32" Nullable="false" />
+    <Property Name="stokSayisi" Type="Int32" Nullable="false" />
+    <Property Name="urunAciklamasi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="urunDurum" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kategoriler" Relationship="CariHesapDbModel.FK_Urunler_Kategoriler" FromRole="Urunler" ToRole="Kategoriler" />
+    <NavigationProperty Name="Satislar" Relationship="CariHesapDbModel.FK_Satislar_Urunler" FromRole="Urunler" ToRole="Satislar" />
+  </EntityType>
+  <Association Name="FK_Urunler_Kategoriler">
+    <End Type="CariHesapDbModel.Kategoriler" Role="Kategoriler" Multiplicity="1" />
+    <End Type="CariHesapDbModel.Urunler" Role="Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoriler">
+        <PropertyRef Name="kategoriID" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="kategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Musteriler_Kullanicilar">
+    <End Type="CariHesapDbModel.Kullanicilar" Role="Kullanicilar" Multiplicity="1" />
+    <End Type="CariHesapDbModel.Musteriler" Role="Musteriler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="kullaniciID" />
+      </Principal>
+      <Dependent Role="Musteriler">
+        <PropertyRef Name="kullaniciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Satislar_Musteriler">
+    <End Type="CariHesapDbModel.Musteriler" Role="Musteriler" Multiplicity="1" />
+    <End Type="CariHesapDbModel.Satislar" Role="Satislar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musteriler">
+        <PropertyRef Name="musteriID" />
+      </Principal>
+      <Dependent Role="Satislar">
+        <PropertyRef Name="musteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Satislar_Urunler">
+    <End Type="CariHesapDbModel.Urunler" Role="Urunler" Multiplicity="1" />
+    <End Type="CariHesapDbModel.Satislar" Role="Satislar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="urunID" />
+      </Principal>
+      <Dependent Role="Satislar">
+        <PropertyRef Name="urunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

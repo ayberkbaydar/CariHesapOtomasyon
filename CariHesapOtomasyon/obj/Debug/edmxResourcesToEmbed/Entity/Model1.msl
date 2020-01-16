@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CariHesapDbModelStoreContainer" CdmEntityContainer="CariHesapDbEntities">
+    <EntitySetMapping Name="Kategoriler">
+      <EntityTypeMapping TypeName="CariHesapDbModel.Kategoriler">
+        <MappingFragment StoreEntitySet="Kategoriler">
+          <ScalarProperty Name="kategoriDurum" ColumnName="kategoriDurum" />
+          <ScalarProperty Name="kategoriAdi" ColumnName="kategoriAdi" />
+          <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kullanicilar">
+      <EntityTypeMapping TypeName="CariHesapDbModel.Kullanicilar">
+        <MappingFragment StoreEntitySet="Kullanicilar">
+          <ScalarProperty Name="kullaniciSifre" ColumnName="kullaniciSifre" />
+          <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+          <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Musteriler">
+      <EntityTypeMapping TypeName="CariHesapDbModel.Musteriler">
+        <MappingFragment StoreEntitySet="Musteriler">
+          <ScalarProperty Name="musteriDurum" ColumnName="musteriDurum" />
+          <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+          <ScalarProperty Name="musteriAdres" ColumnName="musteriAdres" />
+          <ScalarProperty Name="musteriTelefon" ColumnName="musteriTelefon" />
+          <ScalarProperty Name="musteriSoyadi" ColumnName="musteriSoyadi" />
+          <ScalarProperty Name="musteriAdi" ColumnName="musteriAdi" />
+          <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Satislar">
+      <EntityTypeMapping TypeName="CariHesapDbModel.Satislar">
+        <MappingFragment StoreEntitySet="Satislar">
+          <ScalarProperty Name="urunAdet" ColumnName="urunAdet" />
+          <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+          <ScalarProperty Name="satisTarihi" ColumnName="satisTarihi" />
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+          <ScalarProperty Name="satisID" ColumnName="satisID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Urunler">
+      <EntityTypeMapping TypeName="CariHesapDbModel.Urunler">
+        <MappingFragment StoreEntitySet="Urunler">
+          <ScalarProperty Name="urunDurum" ColumnName="urunDurum" />
+          <ScalarProperty Name="urunAciklamasi" ColumnName="urunAciklamasi" />
+          <ScalarProperty Name="stokSayisi" ColumnName="stokSayisi" />
+          <ScalarProperty Name="satimFiyati" ColumnName="satimFiyati" />
+          <ScalarProperty Name="alimFiyati" ColumnName="alimFiyati" />
+          <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+          <ScalarProperty Name="urunAdi" ColumnName="urunAdi" />
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
